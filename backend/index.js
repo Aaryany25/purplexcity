@@ -16,6 +16,7 @@ app.use(express.json())
 app.post("/signup",async(req,res)=>{
     
 })
+
 app.post("/ask",async(req,res)=>{
     // Get the query from the user 
     const query = req.body.query
