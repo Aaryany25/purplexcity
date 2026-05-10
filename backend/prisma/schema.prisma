@@ -17,6 +17,7 @@ id String @id @default(uuid())
 email String
 provider AuthProvider 
 name String
+conversations Converstion[]
 }
 
 enum AuthProvider{
@@ -29,12 +30,16 @@ model Converstion {
   title String
   slug String
   UserId String
+  Messages Message[]
+  user User @relation(fields: [UserId],references: [id])
 }
 model Message{
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   content String 
   role MessageRole
-
+  conversationId String 
+  createdAt DateTime @default(now())
+conversation Converstion @relation(fields: [conversationId],references: [id])
 }
 
 enum MessageRole{
