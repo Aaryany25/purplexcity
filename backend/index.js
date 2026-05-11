@@ -6,17 +6,26 @@ import { PROMPT_TEMPLATE, SYSTEM_PROMPT } from "./prompt.js";
 // import z from "zod";
 import express from "express"
 import dotenv from "dotenv";
+import { prisma } from "./db.js";
 
 // const express = require('express')
-dotenv.config()
 const app = express()
 
 const client = tavily({apiKey:process.env.TAVILY_API_KEY})
 app.use(express.json())
+
 app.post("/signup",async(req,res)=>{
     
 })
+app.post("/signin",async(req,res)=>{
 
+})
+app.get("/conversation",(req,res)=>{
+
+})
+app.get("/conversation/:conversationId",(req,res)=>{
+
+})
 app.post("/ask",async(req,res)=>{
     // Get the query from the user 
     const query = req.body.query
@@ -53,6 +62,11 @@ res.write("\n________Sources____________________\n")
     res.write(JSON.stringify(WebSearchResult.map(results=>({url:results.url}))))
 // End stream 
 res.end()
+})
+app.post("/ask/followup",(req,res)=>{
+    // Get the existing chat from the db 
+    // Forward the full history to the LLM 
+    // Stream back the response to user 
 })
 app.listen(3000,()=>{
     console.log("Server Started !")
