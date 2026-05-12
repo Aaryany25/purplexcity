@@ -7,13 +7,15 @@ import { PROMPT_TEMPLATE, SYSTEM_PROMPT } from "./prompt.js";
 import express from "express"
 import dotenv from "dotenv";
 import { prisma } from "./db.js";
-
+import { Auth } from "./middleware.js";
+import cors from 'cors'
 // const express = require('express')
 const app = express()
 
 const client = tavily({apiKey:process.env.TAVILY_API_KEY})
+app.use(cors())
 app.use(express.json())
-
+app.use(Auth)
 app.post("/signup",async(req,res)=>{
     
 })
@@ -21,7 +23,9 @@ app.post("/signin",async(req,res)=>{
 
 })
 app.get("/conversation",(req,res)=>{
-
+res.json({
+    userId:req.userid
+})
 })
 app.get("/conversation/:conversationId",(req,res)=>{
 
