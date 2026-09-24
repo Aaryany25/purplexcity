@@ -445,7 +445,7 @@ function Home({ user, token, supabase }) {
           <div className="space-y-0.5 pb-4">
             {conversations.length === 0 ? (
               <div className="text-xs text-neutral-400 px-2.5 py-2 italic">
-                No past chats
+                No past chatss
               </div>
             ) : (
               conversations.map((chat) => (
